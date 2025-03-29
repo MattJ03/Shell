@@ -20,7 +20,7 @@ void execute_command(char *args[]) {
     if(pid == 1) {
         perror("Forking failed\n");
     } else if(pid == 0) {
-        execvp(args[0], args) == -1);
+        execvp(args[0], args) == -1;
       
         perror("arguement failed\n");
       
