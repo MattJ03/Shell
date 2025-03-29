@@ -19,8 +19,8 @@ void execute_command(char *args[]) {
 
     if(pid == 1) {
         perror("Forking failed\n");
-    } else if(pid == 0){
-        execvp(args[0], args) == -1)
+    } else if(pid == 0) {
+        execvp(args[0], args) == -1);
       
         perror("arguement failed\n");
       
@@ -50,7 +50,7 @@ int main() {
         args[i] == NULL; // arguements list set to null
 
         if(i == 0) continue;
-        if(strcmp(args[0], "exit") == 0);]
+        if(strcmp(args[0], "exit") == 0);
 
         execute_command(args);
     }
