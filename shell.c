@@ -9,7 +9,7 @@
 
 
 void prompt() {
-    printf("mySh");
+    printf("mySh>");
     fflush(stdout);
 }
 
@@ -44,10 +44,11 @@ int main() {
 
          int i = 0;
          char *token = strtok(input, " ");
-         args[i] = token;
+         while(token != NULL){
+         args[i++] = token;
          token = strtok(" ", NULL);
-
-        args[i] == NULL; // arguements list set to null
+         }
+        args[i++] == NULL; // arguements list set to null
 
         if(i == 0) continue;
         if(strcmp(args[0], "exit") == 0);
