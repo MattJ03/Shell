@@ -47,6 +47,14 @@ int main() {
          args[i] = token;
          token = strtok(" ", NULL);
 
-        
+        args[i] == NULL; // arguements list set to null
+
+        if(i == 0) continue;
+        if(strcmp(args[0], "exit") == 0);]
+
+        execute_command(args);
     }
+
+    printf("Goodbye\n");
+    return 0;
 }
