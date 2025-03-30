@@ -9,7 +9,7 @@
 
 
 void prompt() {
-    printf("mySh>");
+    printf("mySh> ");
     fflush(stdout);
 }
 
@@ -17,21 +17,20 @@ void execute_command(char *args[]) {
 
     pid_t pid = fork();
 
-    if(pid == 1) {
-        perror("Forking failed\n");
+    if(pid < 0) {
+        perror("forking failed");
     } else if(pid == 0) {
-        execvp(args[0], args) == -1;
-      
-        perror("arguement failed\n");
-      
-        exit(EXIT_FAILURE);
+       if(execvp(args[0], args) == -1){
+      perror("arguement failed\n");
+      exit(EXIT_FAILURE);
+       }
     } else {
         wait(NULL);
     }
 }
 
 int main() {
-    char args[MAX_CMD_LEN];
+    char *args[MAX_CMD_LEN];
     char input[MAX_CMD_LEN];
 
     while(1) {
@@ -40,18 +39,20 @@ int main() {
             break; //at end of file EOF
         }
     
-        input[strcspn(input, "\n") == 0];
+        input[strcspn(input, "\n")] = '\0';
 
          int i = 0;
          char *token = strtok(input, " ");
          while(token != NULL){
          args[i++] = token;
-         token = strtok(" ", NULL);
+         token = strtok(NULL, " ");
          }
-        args[i++] == NULL; // arguements list set to null
+        args[i++] = NULL; // arguements list set to null
 
         if(i == 0) continue;
-        if(strcmp(args[0], "exit") == 0);
+        if(strcmp(args[0], "exit") == 0){
+            break;
+        }
 
         execute_command(args);
     }
